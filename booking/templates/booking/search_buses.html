@@ -1,0 +1,26 @@
+{% extends "booking/base.html" %}
+
+{% block content %}
+<h2>Search Buses</h2>
+<form method="get" action="{% url 'search_buses' %}">
+    <label for="source">Source:</label>
+    <input type="text" id="source" name="source">
+    <label for="destination">Destination:</label>
+    <input type="text" id="destination" name="destination">
+    <label for="date_of_journey">Date of Journey:</label>
+    <input type="date" id="date_of_journey" name="date_of_journey">
+    <button type="submit">Search</button>
+</form>
+
+{% if buses %}
+    <h3>Available Buses:</h3>
+    <ul>
+        {% for bus in buses %}
+            <li>
+                Bus ID: {{ bus.id }}, Start Time: {{ bus.start_time }}, Available Seats: {{ bus.available_seats }}, Stops: {{ bus.stops }}
+                <a href="{% url 'block_seats' bus.id %}">Block Seats</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "booking/base.html" %}
+
+{% block content %}
+<h2>Block Seats</h2>
+<form method="post" action="{% url 'block_seats' bus_id %}">
+    {% csrf_token %}
+    <label for="bus_id">Bus ID:</label>
+    <input type="text" id="bus_id" name="bus_id" value="{{ bus_id }}" readonly>
+    <label for="pickup_point">Pickup Point:</label>
+    <input type="text" id="pickup_point" name="pickup_point">
+    <label for="num_passengers">Number of Passengers:</label>
+    <input type="number" id="num_passengers" name="num_passengers">
+    <button type="submit">Block Seats</button>
+</form>
+{% endblock %}
